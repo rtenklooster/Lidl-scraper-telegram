@@ -1,0 +1,1324 @@
+{
+    "type": "CategorySearchResult",
+    "version": "v2.0.0",
+    "engine": "opencommercesearch",
+    "variant": {
+        "id": "ff01_flat-articles_default",
+        "testName": "engine",
+        "trackingSolution": "GA",
+        "active": true,
+        "xPayload": {
+            "groupVariantsAsFlatArticles": false,
+            "engine": "etl"
+        }
+    },
+    "xPayload": {},
+    "id": "cb2c46d9-cfbb-4fca-990e-0cec75d132eb",
+    "locale": "nl_NL",
+    "assortment": "NL",
+    "numFound": 818,
+    "offset": 0,
+    "fetchsize": 4,
+    "maxfetchsize": 1000,
+    "sort": {
+        "code": "relevancy",
+        "label": "Relevantie",
+        "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&pageId=10003574&productsOnly=true&withFacets=false",
+        "link": {
+            "type": "category",
+            "filter": {
+                "productsOnly": [
+                    "true"
+                ],
+                "withFacets": [
+                    "false"
+                ]
+            },
+            "categoryPath": "/h/klussen/h10003574",
+            "pageId": "10003574"
+        }
+    },
+    "sorts": [
+        {
+            "code": "relevancy",
+            "label": "Relevantie",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "firstOnlineDate-desc",
+            "label": "Nieuwste artikelen",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=firstOnlineDate-desc&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "firstOnlineDate-desc",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "ratingScore-desc",
+            "label": "Beoordeling",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=ratingScore-desc&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "ratingScore-desc",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "price",
+            "label": "Prijs laag-hoog",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=price&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "price",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "price-desc",
+            "label": "Prijs hoog-laag",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=price-desc&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "price-desc",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "percentageDiscount-desc",
+            "label": "Hoogste Korting",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=percentageDiscount-desc&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "percentageDiscount-desc",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        },
+        {
+            "code": "sh_carts-desc",
+            "label": "Bestseller",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&sort=sh_carts-desc&pageId=10003574&productsOnly=true&withFacets=false",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ],
+                    "withFacets": [
+                        "false"
+                    ]
+                },
+                "sort": "sh_carts-desc",
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        }
+    ],
+    "facets": [],
+    "items": [
+        {
+            "resultClass": "product",
+            "type": "product",
+            "code": "100386124",
+            "label": "Hogedrukreiniger 170 bar hogedruk reiniger",
+            "url": "",
+            "xPayload": {},
+            "gridbox": {
+                "country": "NL",
+                "sequence": 1741453928629030,
+                "data": {
+                    "ageRestriction": false,
+                    "awards": [],
+                    "brand": {
+                        "logo": "https://www.lidl.nl/assets/e04092d839176694263798baaca7efe5.png",
+                        "name": "PARKSIDE®",
+                        "url": "/q/search?q=parkside",
+                        "id": "PARK",
+                        "showBrand": true
+                    },
+                    "canonicalPath": "/p/parkside-hogedrukreiniger-170-bar/p100386124",
+                    "canonicalUrl": "/p/parkside-hogedrukreiniger-170-bar/p100386124",
+                    "category": "Assortiment/Tuin & Klussen/Tuin & Grills/Tuinapparaten & Tuinmachines/Hogedrukreiniger & Reinigingsapparatuur",
+                    "categorySecondaryPath": "0/41/4110/411012/41101212",
+                    "dealOfDay": {
+                        "active": false
+                    },
+                    "designTheme": "default",
+                    "disclaimers": [
+                        {
+                            "id": "code_100386124_14b670af",
+                            "type": "CODE",
+                            "value": "Basic"
+                        },
+                        {
+                            "id": "code_100386124_bef54b14",
+                            "type": "CODE",
+                            "value": "RecommendedPrice_Legal"
+                        }
+                    ],
+                    "displayFreeDelivery": false,
+                    "energyLabels": [],
+                    "erpNumber": "100386124",
+                    "flashSales": false,
+                    "fullTitle": "PARKSIDE® Hogedrukreiniger 170 bar",
+                    "gs1Attributes": [],
+                    "havingPrice": true,
+                    "havingThreesixty": false,
+                    "havingVariablePrices": false,
+                    "havingVideos": false,
+                    "highlightedSeals": 1,
+                    "ians": [
+                        "466665"
+                    ],
+                    "image": "https://www.lidl.nl/assets/gcp6d291cdce2c040989c62c1aa7018cc51.jpg",
+                    "isUsedProduct": false,
+                    "imageList": [
+                        "https://www.lidl.nl/assets/gcp6d291cdce2c040989c62c1aa7018cc51.jpg",
+                        "https://www.lidl.nl/assets/gcp81bf7cce8cfe4cb09e00e2f9c4e8fd1e.jpg",
+                        "https://www.lidl.nl/assets/gcp704c76c008eb46968e049ba2ba548e8f.jpg"
+                    ],
+                    "keyfacts": {
+                        "analyticsCategory": "Assortiment/Tuin & Klussen/Tuin & Grills/Tuinapparaten & Tuinmachines/Hogedrukreiniger & Reinigingsapparatuur",
+                        "description": "<p><strong><u><span style=\"color:#000000;\">Activeer je coupon in de Lidl plus app voor korting</span></u></strong><br /> <br /> <span style=\"color: #0050aa;\">✓</span> Krachtige aluminium hogedrukpomp<br /> <span style=\"color: #0050aa;\">✓</span> Energiebesparend Auto-Start-Stop-systeem<br /> <span style=\"color: #0050aa;\">✓</span> Hoge mobiliteit door lichtgewicht constructie</p>",
+                        "fullTitle": "PARKSIDE® Hogedrukreiniger 170 bar",
+                        "moreDetails": "Meer informatie",
+                        "supplementalDescription": "<p><strong>Vermogen</strong>: 2400 W<br /><strong>Druk</strong>: 11,5 MPa (115 bar)<br /><strong>Debiet</strong>: max. 500 l/h</p>",
+                        "title": "Hogedrukreiniger 170 bar"
+                    },
+                    "lidlPlus": [],
+                    "multipack": false,
+                    "online": true,
+                    "preventSelling": false,
+                    "price": {
+                        "currencyCode": "EUR",
+                        "currencyCodeSecond": "",
+                        "currencySymbol": "€",
+                        "currencySymbolSecond": "",
+                        "hasStar": false,
+                        "hasVat": true,
+                        "price": 129.0,
+                        "specialTaxes": [],
+                        "variantsHaveDifferentPrices": false
+                    },
+                    "productId": 100386124,
+                    "productType": "FLAT",
+                    "productOrigin": "progress_event",
+                    "quickAddToCart": false,
+                    "ratings": {
+                        "average": 4.7,
+                        "count": 621,
+                        "recommendedNo": 28,
+                        "recommendedYes": 449,
+                        "sizePercentage": 0,
+                        "topRated": false
+                    },
+                    "regions": [],
+                    "ribbons": [],
+                    "renderedTs": 1741453928,
+                    "salesAttributes": {
+                        "template": [
+                            {
+                                "date": [],
+                                "label": [],
+                                "text": [],
+                                "flag": [],
+                                "list": [
+                                    {
+                                        "key": "Bundle",
+                                        "listElement": [
+                                            {
+                                                "value": "100385936"
+                                            },
+                                            {
+                                                "value": "100385733"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "id": 43001,
+                                "name": "PDP Bundle",
+                                "version": "2"
+                            }
+                        ]
+                    },
+                    "seals": [
+                        {
+                            "altText": "Zegel 1",
+                            "image": "https://www.lidl.nl/assets/gcpe9ed1ef7b91b4d1da6757a680eb7ddab.png"
+                        }
+                    ],
+                    "stockAvailability": {
+                        "availabilityIndicator": 3,
+                        "badgeInfo": {
+                            "badges": [
+                                {
+                                    "text": "Leverbaar",
+                                    "type": "AVAILABLE_ONLINE"
+                                }
+                            ]
+                        },
+                        "onlineAvailable": true,
+                        "orderableQuantities": [
+                            {
+                                "value": 1
+                            },
+                            {
+                                "value": 2
+                            },
+                            {
+                                "value": 3
+                            },
+                            {
+                                "value": 4
+                            },
+                            {
+                                "value": 5
+                            },
+                            {
+                                "value": 6
+                            },
+                            {
+                                "value": 7
+                            },
+                            {
+                                "value": 8
+                            },
+                            {
+                                "value": 9
+                            },
+                            {
+                                "value": 10
+                            }
+                        ],
+                        "minOrderableQuantity": 1
+                    },
+                    "store": false,
+                    "title": "Hogedrukreiniger 170 bar"
+                },
+                "productId": 100386124,
+                "meta": {
+                    "sapProductCategory": {
+                        "code": "41101212",
+                        "name": "Hogedrukreiniger & Reinigingsapparatuur",
+                        "pathCode": "0/41/4110/411012/41101212",
+                        "pathName": "Assortiment/Tuin & Klussen/Tuin & Grills/Tuinapparaten & Tuinmachines/Hogedrukreiniger & Reinigingsapparatuur"
+                    },
+                    "categoryPaths": [
+                        [
+                            {
+                                "id": "10003574",
+                                "name": "Klussen",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004071",
+                                "name": "Tuingereedschap",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004769",
+                                "name": "Hogedrukreinigers & reinigingsapparaten",
+                                "hiddenCategory": false
+                            }
+                        ],
+                        [
+                            {
+                                "id": "10003575",
+                                "name": "Tuin",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004071",
+                                "name": "Tuingereedschap",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004400",
+                                "name": "Reinigingsapparaten",
+                                "hiddenCategory": false
+                            }
+                        ],
+                        [
+                            {
+                                "id": "10003575",
+                                "name": "Tuin",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004071",
+                                "name": "Tuingereedschap",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004400",
+                                "name": "Reinigingsapparaten",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004769",
+                                "name": "Hogedrukreinigers & reinigingsapparaten",
+                                "hiddenCategory": false
+                            }
+                        ]
+                    ],
+                    "campaignPaths": [
+                        [
+                            {
+                                "id": "10018017",
+                                "name": "Alles voor je tuin",
+                                "hiddenCategory": false
+                            }
+                        ]
+                    ],
+                    "fullTitle": "PARKSIDE® Hogedrukreiniger 170 bar",
+                    "ean": "4052916111291",
+                    "gs1": {
+                        "segment": {
+                            "code": "81000000",
+                            "label": "Tuinbenodigdheden",
+                            "family": {
+                                "code": "81010000",
+                                "label": "Tuinbenodigdheden",
+                                "clazz": {
+                                    "code": "81011200",
+                                    "label": "Tuingereedschap",
+                                    "brick": {
+                                        "code": "10003375",
+                                        "label": "Hogedrukreinigers (Aangedreven)",
+                                        "attributeGS1": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "shopCategories": {
+                        "shopCategory": [
+                            {
+                                "code": "41101212",
+                                "name": "Hogedrukreiniger & Reinigingsapparatuur",
+                                "parent": "411012",
+                                "superCategories": {
+                                    "category": [
+                                        {
+                                            "code": "411012",
+                                            "name": "Tuinapparaten & Tuinmachines",
+                                            "parent": "4110"
+                                        },
+                                        {
+                                            "code": "4110",
+                                            "name": "Tuin & Grills",
+                                            "parent": "41"
+                                        },
+                                        {
+                                            "code": "41",
+                                            "name": "Tuin & Klussen",
+                                            "parent": "0"
+                                        },
+                                        {
+                                            "code": "0",
+                                            "name": "Assortiment",
+                                            "parent": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "wonCategoryBreadcrumbs": [],
+                    "preview": false
+                },
+                "action": "UPDATE",
+                "language": "nl",
+                "eventType": "GRIDBOX",
+                "id": "100386124"
+            },
+            "tracking": {
+                "position": 1,
+                "xPayload": {
+                    "searchTrackingMasterId": "Product.100386124",
+                    "searchTrackingTitle": "Hogedrukreiniger+170+bar",
+                    "searchTrackingPageSize": 4,
+                    "searchTrackingPage": 1,
+                    "searchTrackingEvent": "click",
+                    "list": "/h/klussen/h10003574",
+                    "searchTrackingId": "Product.100386124",
+                    "searchTrackingOrigPos": 1,
+                    "searchTrackingPos": 1,
+                    "searchTrackingOrigPageSize": 4,
+                    "searchTrackingChannel": "NL",
+                    "category": "Assortiment/Tuin & Klussen/Tuin & Grills/Tuinapparaten & Tuinmachines/Hogedrukreiniger & Reinigingsapparatuur"
+                }
+            }
+        },
+        {
+            "resultClass": "product",
+            "type": "product",
+            "code": "100386195",
+            "label": "9 houten terrastegels terras tegels",
+            "url": "",
+            "xPayload": {},
+            "gridbox": {
+                "country": "NL",
+                "sequence": 1741095325323752,
+                "data": {
+                    "ageRestriction": false,
+                    "awards": [],
+                    "brand": {
+                        "logo": "https://www.lidl.nl/assets/gcp325f0c56f2cc44e9826fb41bb987ecca.png",
+                        "name": "LIVARNO home",
+                        "url": "/q/search?q=livarno+home",
+                        "id": "LIHO",
+                        "showBrand": true
+                    },
+                    "canonicalPath": "/p/livarno-home-9-houten-terrastegels/p100386195",
+                    "canonicalUrl": "/p/livarno-home-9-houten-terrastegels/p100386195",
+                    "category": "Assortiment/Tuin & Klussen/Bouwen & Renoveren/Vloerbedekkingen/Tegels",
+                    "categorySecondaryPath": "0/41/4112/411217/41121711",
+                    "dealOfDay": {
+                        "active": false
+                    },
+                    "designTheme": "default",
+                    "disclaimers": [
+                        {
+                            "id": "code_100386195_5631f15b",
+                            "type": "CODE",
+                            "value": "Basic"
+                        },
+                        {
+                            "id": "code_100386195_a8d8bed4",
+                            "type": "CODE",
+                            "value": "RecommendedPrice_Legal"
+                        }
+                    ],
+                    "displayFreeDelivery": false,
+                    "energyLabels": [],
+                    "erpNumber": "100386195",
+                    "flashSales": false,
+                    "fullTitle": "LIVARNO home 9 houten terrastegels",
+                    "gs1Attributes": [],
+                    "havingPrice": true,
+                    "havingThreesixty": false,
+                    "havingVariablePrices": false,
+                    "havingVideos": false,
+                    "highlightedSeals": 0,
+                    "ians": [
+                        "489169"
+                    ],
+                    "image": "https://www.lidl.nl/assets/gcp2cc88e9568624cd78184db896c6d8b90.jpg",
+                    "isUsedProduct": false,
+                    "imageList": [
+                        "https://www.lidl.nl/assets/gcp2cc88e9568624cd78184db896c6d8b90.jpg",
+                        "https://www.lidl.nl/assets/gcp8ae25a6eaa86457da89d2f736719b7e9.jpg",
+                        "https://www.lidl.nl/assets/gcp07467a98b88744adad1e3fef189f4124.jpg"
+                    ],
+                    "keyfacts": {
+                        "analyticsCategory": "Assortiment/Tuin & Klussen/Bouwen & Renoveren/Vloerbedekkingen/Tegels",
+                        "description": "<p><span style=\"color: #0050aa;\">✓</span> Ideaal voor het opnieuw inrichten van uw terras, balkon of serre<br /><span style=\"color: #0050aa;\">✓</span> Eenvoudig en snel te leggen dankzij de steekverbindingen<br /><span style=\"color: #0050aa;\">✓</span> Robuust en duurzaam</p>",
+                        "fullTitle": "LIVARNO home 9 houten terrastegels",
+                        "moreDetails": "Meer informatie",
+                        "supplementalDescription": "<p><strong>Set</strong>: 9 stuks<br /> <strong>Materiaal</strong>: Acaciahout<br /> <strong>Afmetingen</strong>: ca. 30 x 30 x 2,4 cm</p>",
+                        "title": "9 houten terrastegels"
+                    },
+                    "lidlPlus": [],
+                    "multipack": false,
+                    "online": true,
+                    "preventSelling": false,
+                    "price": {
+                        "currencyCode": "EUR",
+                        "currencyCodeSecond": "",
+                        "currencySymbol": "€",
+                        "currencySymbolSecond": "",
+                        "hasStar": false,
+                        "hasVat": true,
+                        "price": 17.99,
+                        "specialTaxes": [],
+                        "variantsHaveDifferentPrices": false
+                    },
+                    "productId": 100386195,
+                    "productType": "FLAT",
+                    "productOrigin": "progress_event",
+                    "quickAddToCart": false,
+                    "ratings": {
+                        "average": 4.7,
+                        "count": 420,
+                        "recommendedNo": 13,
+                        "recommendedYes": 262,
+                        "sizePercentage": 0,
+                        "topRated": false
+                    },
+                    "regions": [],
+                    "ribbons": [],
+                    "renderedTs": 1741095325,
+                    "seals": [],
+                    "stockAvailability": {
+                        "availabilityIndicator": 3,
+                        "badgeInfo": {
+                            "badges": [
+                                {
+                                    "text": "Leverbaar",
+                                    "type": "AVAILABLE_ONLINE"
+                                }
+                            ]
+                        },
+                        "onlineAvailable": true,
+                        "orderableQuantities": [
+                            {
+                                "value": 1
+                            },
+                            {
+                                "value": 2
+                            },
+                            {
+                                "value": 3
+                            },
+                            {
+                                "value": 4
+                            },
+                            {
+                                "value": 5
+                            },
+                            {
+                                "value": 6
+                            },
+                            {
+                                "value": 7
+                            },
+                            {
+                                "value": 8
+                            },
+                            {
+                                "value": 9
+                            },
+                            {
+                                "value": 10
+                            }
+                        ],
+                        "minOrderableQuantity": 1
+                    },
+                    "store": false,
+                    "title": "9 houten terrastegels"
+                },
+                "productId": 100386195,
+                "meta": {
+                    "sapProductCategory": {
+                        "code": "41121711",
+                        "name": "Tegels",
+                        "pathCode": "0/41/4112/411217/41121711",
+                        "pathName": "Assortiment/Tuin & Klussen/Bouwen & Renoveren/Vloerbedekkingen/Tegels"
+                    },
+                    "categoryPaths": [
+                        [
+                            {
+                                "id": "10003574",
+                                "name": "Klussen",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10005348",
+                                "name": "Klustoebehoren & accessoires",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10051880",
+                                "name": "Bouwmaterialen",
+                                "hiddenCategory": false
+                            }
+                        ]
+                    ],
+                    "campaignPaths": [],
+                    "fullTitle": "LIVARNO home 9 houten terrastegels",
+                    "ean": "4052916200216",
+                    "gs1": {
+                        "segment": {
+                            "code": "81000000",
+                            "label": "Tuinbenodigdheden",
+                            "family": {
+                                "code": "81010000",
+                                "label": "Tuinbenodigdheden",
+                                "clazz": {
+                                    "code": "81010300",
+                                    "label": "Meubilair/Inrichting voor Tuin",
+                                    "brick": {
+                                        "code": "10003251",
+                                        "label": "Tuinartikelen - Onderdelen/Accessoires",
+                                        "attributeGS1": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "shopCategories": {
+                        "shopCategory": [
+                            {
+                                "code": "41121711",
+                                "name": "Tegels",
+                                "parent": "411217",
+                                "superCategories": {
+                                    "category": [
+                                        {
+                                            "code": "411217",
+                                            "name": "Vloerbedekkingen",
+                                            "parent": "4112"
+                                        },
+                                        {
+                                            "code": "4112",
+                                            "name": "Bouwen & Renoveren",
+                                            "parent": "41"
+                                        },
+                                        {
+                                            "code": "41",
+                                            "name": "Tuin & Klussen",
+                                            "parent": "0"
+                                        },
+                                        {
+                                            "code": "0",
+                                            "name": "Assortiment",
+                                            "parent": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "wonCategoryBreadcrumbs": [],
+                    "preview": false
+                },
+                "action": "UPDATE",
+                "language": "nl",
+                "eventType": "GRIDBOX",
+                "id": "100386195"
+            },
+            "tracking": {
+                "position": 2,
+                "xPayload": {
+                    "searchTrackingMasterId": "Product.100386195",
+                    "searchTrackingTitle": "9+houten+terrastegels",
+                    "searchTrackingPageSize": 4,
+                    "searchTrackingPage": 1,
+                    "searchTrackingEvent": "click",
+                    "list": "/h/klussen/h10003574",
+                    "searchTrackingId": "Product.100386195",
+                    "searchTrackingOrigPos": 1,
+                    "searchTrackingPos": 2,
+                    "searchTrackingOrigPageSize": 4,
+                    "searchTrackingChannel": "NL",
+                    "category": "Assortiment/Tuin & Klussen/Bouwen & Renoveren/Vloerbedekkingen/Tegels"
+                }
+            }
+        },
+        {
+            "resultClass": "product",
+            "type": "product",
+            "code": "100384761",
+            "label": "Accu 20 V - 4 Ah",
+            "url": "",
+            "xPayload": {},
+            "gridbox": {
+                "country": "NL",
+                "sequence": 1741514538375195,
+                "data": {
+                    "ageRestriction": false,
+                    "awards": [],
+                    "brand": {
+                        "logo": "https://www.lidl.nl/assets/e04092d839176694263798baaca7efe5.png",
+                        "name": "PARKSIDE®",
+                        "url": "/q/search?q=parkside",
+                        "id": "PARK",
+                        "showBrand": true
+                    },
+                    "canonicalPath": "/p/parkside-accu-20-v-4-ah/p100384761",
+                    "canonicalUrl": "/p/parkside-accu-20-v-4-ah/p100384761",
+                    "category": "Assortiment/Tuin & Klussen/Garage/Accu & Elektrisch gereedschap/Accu’s & laders",
+                    "categorySecondaryPath": "0/41/4111/411119/41111910",
+                    "dealOfDay": {
+                        "active": false
+                    },
+                    "designTheme": "default",
+                    "disclaimers": [
+                        {
+                            "id": "code_100384761_1f4fdf66",
+                            "type": "CODE",
+                            "value": "Basic"
+                        },
+                        {
+                            "id": "code_100384761_4580f0e5",
+                            "type": "CODE",
+                            "value": "RecommendedPrice_Legal"
+                        }
+                    ],
+                    "displayFreeDelivery": false,
+                    "energyLabels": [],
+                    "erpNumber": "100384761",
+                    "flashSales": false,
+                    "fullTitle": "PARKSIDE® Accu 20 V - 4 Ah",
+                    "gs1Attributes": [],
+                    "havingPrice": true,
+                    "havingThreesixty": false,
+                    "havingVariablePrices": false,
+                    "havingVideos": false,
+                    "highlightedSeals": 2,
+                    "ians": [
+                        "465658"
+                    ],
+                    "image": "https://www.lidl.nl/assets/gcp82ce67277bab40e78710e7d7c466c72a.jpeg",
+                    "isUsedProduct": false,
+                    "imageList": [
+                        "https://www.lidl.nl/assets/gcp82ce67277bab40e78710e7d7c466c72a.jpeg",
+                        "https://www.lidl.nl/assets/gcp2f025a1c152d48b7a4e4145d87d19978.jpeg"
+                    ],
+                    "keyfacts": {
+                        "analyticsCategory": "Assortiment/Tuin & Klussen/Garage/Accu & Elektrisch gereedschap/Accu’s & laders",
+                        "description": "",
+                        "fullTitle": "PARKSIDE® Accu 20 V - 4 Ah",
+                        "moreDetails": "Meer informatie",
+                        "supplementalDescription": "<p><strong>Uit de serie PARKSIDE</strong><br /> <strong>Accuspanning:</strong> 20 V<br /> <strong>Accucapaciteit:</strong> 4 Ah</p>",
+                        "title": "Accu 20 V - 4 Ah"
+                    },
+                    "lidlPlus": [],
+                    "multipack": false,
+                    "online": true,
+                    "preventSelling": false,
+                    "price": {
+                        "currencyCode": "EUR",
+                        "currencyCodeSecond": "",
+                        "currencySymbol": "€",
+                        "currencySymbolSecond": "",
+                        "hasStar": false,
+                        "hasVat": true,
+                        "price": 34.99,
+                        "specialTaxes": [],
+                        "variantsHaveDifferentPrices": false
+                    },
+                    "productId": 100384761,
+                    "productType": "FLAT",
+                    "productOrigin": "progress_event",
+                    "quickAddToCart": false,
+                    "ratings": {
+                        "average": 4.8,
+                        "count": 3798,
+                        "recommendedNo": 94,
+                        "recommendedYes": 2842,
+                        "sizePercentage": 0,
+                        "topRated": true,
+                        "text": "Beste beoordelingen"
+                    },
+                    "regions": [],
+                    "ribbons": [
+                        {
+                            "type": "TOP_RATED",
+                            "text": "Beste beoordelingen",
+                            "theme": "top-rated",
+                            "icon": "star-10"
+                        }
+                    ],
+                    "renderedTs": 1741514538,
+                    "seals": [
+                        {
+                            "altText": "Zegel 1",
+                            "image": "https://www.lidl.nl/assets/gcpf5d1f93e09a14da4a81d12acb9cc0fc8.png"
+                        }
+                    ],
+                    "stockAvailability": {
+                        "availabilityIndicator": 3,
+                        "badgeInfo": {
+                            "badges": [
+                                {
+                                    "text": "Leverbaar",
+                                    "type": "AVAILABLE_ONLINE"
+                                }
+                            ]
+                        },
+                        "onlineAvailable": true,
+                        "orderableQuantities": [
+                            {
+                                "value": 1
+                            },
+                            {
+                                "value": 2
+                            },
+                            {
+                                "value": 3
+                            },
+                            {
+                                "value": 4
+                            },
+                            {
+                                "value": 5
+                            },
+                            {
+                                "value": 6
+                            },
+                            {
+                                "value": 7
+                            },
+                            {
+                                "value": 8
+                            },
+                            {
+                                "value": 9
+                            },
+                            {
+                                "value": 10
+                            }
+                        ],
+                        "minOrderableQuantity": 1
+                    },
+                    "store": false,
+                    "title": "Accu 20 V - 4 Ah"
+                },
+                "productId": 100384761,
+                "meta": {
+                    "sapProductCategory": {
+                        "code": "41111910",
+                        "name": "Accu’s & laders",
+                        "pathCode": "0/41/4111/411119/41111910",
+                        "pathName": "Assortiment/Tuin & Klussen/Garage/Accu & Elektrisch gereedschap/Accu’s & laders"
+                    },
+                    "categoryPaths": [
+                        [
+                            {
+                                "id": "10003574",
+                                "name": "Klussen",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004051",
+                                "name": "Accu & elektrisch gereedschap",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004384",
+                                "name": "Accu's & snelladers",
+                                "hiddenCategory": false
+                            }
+                        ],
+                        [
+                            {
+                                "id": "10003574",
+                                "name": "Klussen",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10005348",
+                                "name": "Klustoebehoren & accessoires",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004384",
+                                "name": "Accu's & snelladers",
+                                "hiddenCategory": false
+                            }
+                        ]
+                    ],
+                    "campaignPaths": [],
+                    "fullTitle": "PARKSIDE® Accu 20 V - 4 Ah",
+                    "ean": "4052916311653",
+                    "gs1": {
+                        "segment": {
+                            "code": "78000000",
+                            "label": "Elektrische Benodigdheden",
+                            "family": {
+                                "code": "78020000",
+                                "label": "Elektrische Verbinding/Verdeling/Batterijen",
+                                "clazz": {
+                                    "code": "78021100",
+                                    "label": "Batterijen/Opladers",
+                                    "brick": {
+                                        "code": "10000704",
+                                        "label": "Batterijen/Opladers - Assortimenten",
+                                        "attributeGS1": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "shopCategories": {
+                        "shopCategory": [
+                            {
+                                "code": "41111910",
+                                "name": "Accu’s & laders",
+                                "parent": "411119",
+                                "superCategories": {
+                                    "category": [
+                                        {
+                                            "code": "411119",
+                                            "name": "Accu & Elektrisch gereedschap",
+                                            "parent": "4111"
+                                        },
+                                        {
+                                            "code": "4111",
+                                            "name": "Garage",
+                                            "parent": "41"
+                                        },
+                                        {
+                                            "code": "41",
+                                            "name": "Tuin & Klussen",
+                                            "parent": "0"
+                                        },
+                                        {
+                                            "code": "0",
+                                            "name": "Assortiment",
+                                            "parent": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "wonCategoryBreadcrumbs": [],
+                    "preview": false
+                },
+                "action": "UPDATE",
+                "language": "nl",
+                "eventType": "GRIDBOX",
+                "id": "100384761"
+            },
+            "tracking": {
+                "position": 3,
+                "xPayload": {
+                    "searchTrackingMasterId": "Product.100384761",
+                    "searchTrackingTitle": "Accu+20+V+-+4+Ah",
+                    "searchTrackingPageSize": 4,
+                    "searchTrackingPage": 1,
+                    "searchTrackingEvent": "click",
+                    "list": "/h/klussen/h10003574",
+                    "searchTrackingId": "Product.100384761",
+                    "searchTrackingOrigPos": 1,
+                    "searchTrackingPos": 3,
+                    "searchTrackingOrigPageSize": 4,
+                    "searchTrackingChannel": "NL",
+                    "category": "Assortiment/Tuin & Klussen/Garage/Accu & Elektrisch gereedschap/Accu’s & laders"
+                }
+            }
+        },
+        {
+            "resultClass": "product",
+            "type": "product",
+            "code": "100371004",
+            "label": "Universele automattenset automatten set",
+            "url": "",
+            "xPayload": {},
+            "gridbox": {
+                "country": "NL",
+                "sequence": 1741345788841479,
+                "data": {
+                    "ageRestriction": false,
+                    "awards": [],
+                    "brand": {
+                        "logo": "https://www.lidl.nl/assets/gcpdabe398c743044f585d9dc70dbfac772.jpeg",
+                        "name": "ULTIMATE SPEED®",
+                        "url": "/q/search?q=ultimate+speed",
+                        "id": "ULTI",
+                        "showBrand": true
+                    },
+                    "canonicalPath": "/p/ultimate-speed-universele-automattenset/p100371004",
+                    "canonicalUrl": "/p/ultimate-speed-universele-automattenset/p100371004",
+                    "category": "Assortiment/Tuin & Klussen/Garage/Autoaccessoires/Voetmatten auto",
+                    "categorySecondaryPath": "0/41/4111/411117/41111718",
+                    "dealOfDay": {
+                        "active": false
+                    },
+                    "designTheme": "default",
+                    "disclaimers": [
+                        {
+                            "id": "code_100371004_c7e0ce3e",
+                            "type": "CODE",
+                            "value": "Basic"
+                        }
+                    ],
+                    "displayFreeDelivery": false,
+                    "energyLabels": [],
+                    "erpNumber": "100371004",
+                    "flashSales": false,
+                    "fullTitle": "ULTIMATE SPEED® Universele automattenset",
+                    "gs1Attributes": [],
+                    "havingPrice": true,
+                    "havingThreesixty": false,
+                    "havingVariablePrices": false,
+                    "havingVideos": false,
+                    "highlightedSeals": 0,
+                    "ians": [
+                        "435065"
+                    ],
+                    "image": "https://www.lidl.nl/assets/gcp80c6c2cd27ae4103b0b381370e0b9a05.jpeg",
+                    "isUsedProduct": false,
+                    "imageList": [
+                        "https://www.lidl.nl/assets/gcp80c6c2cd27ae4103b0b381370e0b9a05.jpeg",
+                        "https://www.lidl.nl/assets/gcp14c48a32d79f4d2793703119d2490975.jpeg",
+                        "https://www.lidl.nl/assets/gcpd887023f61d14328a93872afbe061bc3.jpeg"
+                    ],
+                    "keyfacts": {
+                        "analyticsCategory": "Assortiment/Tuin & Klussen/Garage/Autoaccessoires/Voetmatten auto",
+                        "description": "<p><span style=\"color: #0050aa;\">✓</span> Beschermt het interieur tegen vuil en slijtage<br /> <span style=\"color: #0050aa;\">✓</span> Antislip en stil<br /> <span style=\"color: #0050aa;\">✓</span> Bestuurdersmat met versterkt schopplaatgedeelte</p>",
+                        "fullTitle": "ULTIMATE SPEED® Universele automattenset",
+                        "moreDetails": "Meer informatie",
+                        "supplementalDescription": "<p><strong>Set:</strong> 4-delig<br /> <strong>Materiaal bovenzijde:</strong> naaldvilt<br /> <strong>Op maat te snijden:</strong> nee</p>",
+                        "title": "Universele automattenset"
+                    },
+                    "lidlPlus": [],
+                    "mouseoverImage": "https://www.lidl.nl/assets/gcpd887023f61d14328a93872afbe061bc3.jpeg",
+                    "multipack": false,
+                    "online": true,
+                    "preventSelling": false,
+                    "price": {
+                        "currencyCode": "EUR",
+                        "currencyCodeSecond": "",
+                        "currencySymbol": "€",
+                        "currencySymbolSecond": "",
+                        "discount": {
+                            "deletedPrice": 9.99,
+                            "discountHasStar": false,
+                            "fromRecommendedPrice": false,
+                            "percentageDiscount": 80,
+                            "showDiscount": true,
+                            "showFrom": false,
+                            "showPercentage": true,
+                            "showUpTo": false
+                        },
+                        "hasStar": false,
+                        "hasVat": true,
+                        "oldPrice": 9.99,
+                        "price": 1.99,
+                        "specialTaxes": [],
+                        "variantsHaveDifferentPrices": false
+                    },
+                    "productId": 100371004,
+                    "productType": "HEAD_VARIANT",
+                    "productOrigin": "progress_event",
+                    "quickAddToCart": false,
+                    "ratings": {
+                        "average": 4.7,
+                        "count": 25,
+                        "recommendedNo": 0,
+                        "recommendedYes": 15,
+                        "sizePercentage": 0,
+                        "topRated": false
+                    },
+                    "regions": [],
+                    "ribbons": [],
+                    "renderedTs": 1741345788,
+                    "seals": [],
+                    "stockAvailability": {
+                        "availabilityIndicator": 3,
+                        "badgeInfo": {
+                            "badges": [
+                                {
+                                    "text": "Leverbaar",
+                                    "type": "AVAILABLE_ONLINE"
+                                }
+                            ]
+                        },
+                        "onlineAvailable": true,
+                        "minOrderableQuantity": 1
+                    },
+                    "store": false,
+                    "title": "Universele automattenset"
+                },
+                "productId": 100371004,
+                "meta": {
+                    "sapProductCategory": {
+                        "code": "41111718",
+                        "name": "Voetmatten auto",
+                        "pathCode": "0/41/4111/411117/41111718",
+                        "pathName": "Assortiment/Tuin & Klussen/Garage/Autoaccessoires/Voetmatten auto"
+                    },
+                    "categoryPaths": [
+                        [
+                            {
+                                "id": "10003574",
+                                "name": "Klussen",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10003576",
+                                "name": "Auto & motor",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004363",
+                                "name": "Hoezen & bekleding",
+                                "hiddenCategory": false
+                            }
+                        ],
+                        [
+                            {
+                                "id": "10003576",
+                                "name": "Auto & motor",
+                                "hiddenCategory": false
+                            },
+                            {
+                                "id": "10004363",
+                                "name": "Hoezen & bekleding",
+                                "hiddenCategory": false
+                            }
+                        ]
+                    ],
+                    "campaignPaths": [],
+                    "fullTitle": "ULTIMATE SPEED® Universele automattenset",
+                    "gs1": {
+                        "segment": {
+                            "code": "77000000",
+                            "label": "Motorvoertuigen - Onderdelen/Accessoires",
+                            "family": {
+                                "code": "77010000",
+                                "label": "Motorvoertuigen - Onderdelen/Accessoires",
+                                "clazz": {
+                                    "code": "77011900",
+                                    "label": "Binnenaccessoires voor Motorvoertuigen - Vloerbekleding",
+                                    "brick": {
+                                        "code": "10002869",
+                                        "label": "Motorvoertuigen - Vloerbekleding - Overig",
+                                        "attributeGS1": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "shopCategories": {
+                        "shopCategory": [
+                            {
+                                "code": "41111718",
+                                "name": "Voetmatten auto",
+                                "parent": "411117",
+                                "superCategories": {
+                                    "category": [
+                                        {
+                                            "code": "411117",
+                                            "name": "Autoaccessoires",
+                                            "parent": "4111"
+                                        },
+                                        {
+                                            "code": "4111",
+                                            "name": "Garage",
+                                            "parent": "41"
+                                        },
+                                        {
+                                            "code": "41",
+                                            "name": "Tuin & Klussen",
+                                            "parent": "0"
+                                        },
+                                        {
+                                            "code": "0",
+                                            "name": "Assortiment",
+                                            "parent": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "wonCategoryBreadcrumbs": [],
+                    "preview": false
+                },
+                "action": "UPDATE",
+                "language": "nl",
+                "eventType": "GRIDBOX",
+                "id": "100371004"
+            },
+            "tracking": {
+                "position": 4,
+                "xPayload": {
+                    "searchTrackingMasterId": "Product.100371004",
+                    "searchTrackingTitle": "Universele+automattenset",
+                    "searchTrackingPageSize": 4,
+                    "searchTrackingPage": 1,
+                    "searchTrackingEvent": "click",
+                    "list": "/h/klussen/h10003574",
+                    "searchTrackingId": "Product.100371004",
+                    "searchTrackingOrigPos": 1,
+                    "searchTrackingPos": 4,
+                    "searchTrackingOrigPageSize": 4,
+                    "searchTrackingChannel": "NL",
+                    "category": "Assortiment/Tuin & Klussen/Garage/Autoaccessoires/Voetmatten auto"
+                }
+            }
+        }
+    ],
+    "breadcrumbs": [
+        {
+            "code": "query",
+            "url": "/q/api/category/h/klussen/h10003574?assortment=NL&locale=nl_NL&version=v2.0.0&pageId=10003574&productsOnly=true",
+            "link": {
+                "type": "category",
+                "filter": {
+                    "productsOnly": [
+                        "true"
+                    ]
+                },
+                "categoryPath": "/h/klussen/h10003574",
+                "pageId": "10003574"
+            }
+        }
+    ],
+    "details": {
+        "categoryData": {
+            "headingTitle": "Klussen",
+            "hasGoogleIndex": "true",
+            "pageTitle": "Alles voor het klussen - LIDL",
+            "name": "Klussen",
+            "metaDescription": "Alles voor het klussen: Van de A van accuschaar tot de Z van zaagblad. Ontdek nu alles wat je nodig hebt voor de inrichting van je werkplaats. Voordelig bij Lidl. ✅ Kies je leverdag ✅ Ook 's avonds bezorgd ✅ 30 Dagen bedenktijd ✅ Gratis retourneren",
+            "url": "/h/klussen/h10003574"
+        }
+    },
+    "teasers": {},
+    "advisors": [],
+    "categoryId": "10003574"
+}

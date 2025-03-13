@@ -1,0 +1,244 @@
+{
+    "resultClass": "product",
+    "type": "product",
+    "code": "100385497",
+    "label": "2-in-1 transportwagen en kruiwagen",
+    "url": "",
+    "xPayload": {},
+    "gridbox": {
+        "country": "NL",
+        "sequence": 1741268410024225,
+        "data": {
+            "ageRestriction": false,
+            "awards": [],
+            "brand": {
+                "logo": "https://www.lidl.nl/assets/gcp2a99462842054306a6542ff3be0602c3.jpeg",
+                "name": "PARKSIDE PERFORMANCE®",
+                "url": "/q/search?q=parkside+performance",
+                "id": "PARP",
+                "showBrand": true
+            },
+            "canonicalPath": "/p/parkside-performance-2-in-1-transportwagen-en-kruiwagen/p100385497",
+            "canonicalUrl": "/p/parkside-performance-2-in-1-transportwagen-en-kruiwagen/p100385497",
+            "category": "Assortiment/Tuin & Klussen/Garage/Klusgereedschap/Transportsystemen",
+            "categorySecondaryPath": "0/41/4111/411120/41112014",
+            "dealOfDay": {
+                "active": false
+            },
+            "designTheme": "default",
+            "disclaimers": [
+                {
+                    "id": "code_100385497_b8842882",
+                    "type": "CODE",
+                    "value": "Basic"
+                }
+            ],
+            "displayFreeDelivery": false,
+            "energyLabels": [],
+            "erpNumber": "100385497",
+            "flashSales": false,
+            "fullTitle": "PARKSIDE PERFORMANCE® 2-in-1 transportwagen en kruiwagen",
+            "gs1Attributes": [],
+            "havingPrice": true,
+            "havingThreesixty": false,
+            "havingVariablePrices": false,
+            "havingVideos": false,
+            "highlightedSeals": 0,
+            "ians": [
+                "477369"
+            ],
+            "image": "https://www.lidl.nl/assets/gcpad8bed74f5b14c178ef9b777debb34a7.jpg",
+            "isUsedProduct": false,
+            "imageList": [
+                "https://www.lidl.nl/assets/gcpad8bed74f5b14c178ef9b777debb34a7.jpg",
+                "https://www.lidl.nl/assets/gcp9c09db8d7b2242cfab21b5f774530bcb.jpg",
+                "https://www.lidl.nl/assets/gcp31b77dfc332a46f79f41f025924e1159.jpg"
+            ],
+            "keyfacts": {
+                "analyticsCategory": "Assortiment/Tuin & Klussen/Garage/Klusgereedschap/Transportsystemen",
+                "description": "<p><span style=\"color: #0050aa;\">✓</span> Uittrekbaar handvat<br /><span style=\"color: #0050aa;\">✓</span> Kleine wielen met rem<br /><span style=\"color: #0050aa;\">✓</span> Optimaal transport van goederen</p>",
+                "fullTitle": "PARKSIDE PERFORMANCE® 2-in-1 transportwagen en kruiwagen",
+                "moreDetails": "Meer informatie",
+                "supplementalDescription": "<p><strong>Draagvermogen</strong>: max. 150 kg<br /> Incl. elastische fixatiebanden</p>",
+                "title": "2-in-1 transportwagen en kruiwagen"
+            },
+            "lidlPlus": [],
+            "multipack": false,
+            "online": true,
+            "preventSelling": false,
+            "price": {
+                "currencyCode": "EUR",
+                "currencyCodeSecond": "",
+                "currencySymbol": "€",
+                "currencySymbolSecond": "",
+                "discount": {
+                    "deletedPrice": 59.99,
+                    "discountHasStar": false,
+                    "fromRecommendedPrice": false,
+                    "percentageDiscount": 33,
+                    "showDiscount": true,
+                    "showFrom": false,
+                    "showPercentage": true,
+                    "showUpTo": false
+                },
+                "hasStar": false,
+                "hasVat": true,
+                "oldPrice": 59.99,
+                "price": 39.99,
+                "specialTaxes": [],
+                "variantsHaveDifferentPrices": false
+            },
+            "productId": 100385497,
+            "productType": "FLAT",
+            "productOrigin": "progress_event",
+            "quickAddToCart": false,
+            "ratings": {
+                "average": 5.0,
+                "count": 1,
+                "recommendedNo": 0,
+                "recommendedYes": 1,
+                "sizePercentage": 0,
+                "topRated": false
+            },
+            "regions": [],
+            "ribbons": [],
+            "renderedTs": 1741268409,
+            "seals": [],
+            "stockAvailability": {
+                "availabilityIndicator": 3,
+                "badgeInfo": {
+                    "badges": [
+                        {
+                            "text": "Leverbaar",
+                            "type": "AVAILABLE_ONLINE"
+                        }
+                    ]
+                },
+                "onlineAvailable": true,
+                "orderableQuantities": [
+                    {
+                        "value": 1
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10
+                    }
+                ],
+                "minOrderableQuantity": 1
+            },
+            "store": false,
+            "title": "2-in-1 transportwagen en kruiwagen"
+        },
+        "productId": 100385497,
+        "meta": {
+            "sapProductCategory": {
+                "code": "41112014",
+                "name": "Transportsystemen",
+                "pathCode": "0/41/4111/411120/41112014",
+                "pathName": "Assortiment/Tuin & Klussen/Garage/Klusgereedschap/Transportsystemen"
+            },
+            "categoryPaths": [],
+            "campaignPaths": [],
+            "fullTitle": "PARKSIDE PERFORMANCE® 2-in-1 transportwagen en kruiwagen",
+            "ean": "4052916190029",
+            "gs1": {
+                "segment": {
+                    "code": "82000000",
+                    "label": "Elektrisch Gereedschap/Apparatuur",
+                    "family": {
+                        "code": "82010000",
+                        "label": "Elektrisch Gereedschap/Apparatuur",
+                        "clazz": {
+                            "code": "82010100",
+                            "label": "Elektrisch Gereedschap - Hef-/Transportapparatuur",
+                            "brick": {
+                                "code": "10003749",
+                                "label": "Elektrisch Gereedschap - Hef-/Transportapparatuur - Overig",
+                                "attributeGS1": []
+                            }
+                        }
+                    }
+                }
+            },
+            "shopCategories": {
+                "shopCategory": [
+                    {
+                        "code": "41112014",
+                        "name": "Transportsystemen",
+                        "parent": "411120",
+                        "superCategories": {
+                            "category": [
+                                {
+                                    "code": "411120",
+                                    "name": "Klusgereedschap",
+                                    "parent": "4111"
+                                },
+                                {
+                                    "code": "4111",
+                                    "name": "Garage",
+                                    "parent": "41"
+                                },
+                                {
+                                    "code": "41",
+                                    "name": "Tuin & Klussen",
+                                    "parent": "0"
+                                },
+                                {
+                                    "code": "0",
+                                    "name": "Assortiment",
+                                    "parent": ""
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "wonCategoryBreadcrumbs": [],
+            "preview": false
+        },
+        "action": "UPDATE",
+        "language": "nl",
+        "eventType": "GRIDBOX",
+        "id": "100385497"
+    },
+    "tracking": {
+        "position": 83,
+        "xPayload": {
+            "searchTrackingMasterId": "Product.100385497",
+            "searchTrackingTitle": "2-in-1+transportwagen+en+kruiwagen",
+            "searchTrackingPageSize": 48,
+            "searchTrackingPage": 2,
+            "searchTrackingEvent": "click",
+            "list": "search",
+            "searchTrackingId": "Product.100385497",
+            "searchTrackingOrigPos": 1,
+            "searchTrackingPos": 83,
+            "searchTrackingOrigPageSize": 48,
+            "searchTrackingChannel": "NL",
+            "category": "Assortiment/Tuin & Klussen/Garage/Klusgereedschap/Transportsystemen"
+        }
+    }
+}
