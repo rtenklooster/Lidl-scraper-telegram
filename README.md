@@ -55,6 +55,24 @@ This project is a Telegram bot that scrapes Lidl's website for product informati
 - `/resume`: Resume all notifications
 - `/delete`: Delete a query
 
+## Notifications
+
+Notifications are sent when new items appear in one of the configured searches, or when existing items in a search change in price.
+
+## Adding a Search Query
+
+Adding a search query is very simple. Go to the Lidl website for your country (e.g., lidl.nl, lidl.de, lidl.it), search for products in the Lidl shop, apply any desired filters, copy the URL from the address bar, and paste it into the chat.
+
+## Registering a Telegram Bot
+
+To register a Telegram bot, follow these steps:
+
+1. Open the Telegram app and search for the BotFather.
+2. Start a chat with the BotFather and send the command `/newbot`.
+3. Follow the instructions to choose a name and username for your bot.
+4. Once the bot is created, you will receive a token. Copy this token.
+5. Add the token to your `.env` file as described in the Setup section.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
