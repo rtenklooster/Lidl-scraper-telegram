@@ -9,6 +9,7 @@ import re
 import signal
 import sys
 import argparse
+import os
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
@@ -109,7 +110,7 @@ async def cancel_query_callback(update: Update, context: ContextTypes.DEFAULT_TY
     await query.edit_message_text("Toevoegen afgebroken.")
 
 def register_handlers(application):
-    """Register all handlers with the application."""
+    """Register all handlers with the application.""" 
     # Callback handlers have priority
     application.add_handler(CallbackQueryHandler(choose_language, pattern="^lang_"))
     application.add_handler(CallbackQueryHandler(confirm_query_callback, pattern="^confirm_query$"))
@@ -133,11 +134,25 @@ def register_handlers(application):
 def main():
     """Main function to start the bot."""
     parser = argparse.ArgumentParser(description='Lidl Scraper Bot')
-    parser.add_argument('--db-path', type=str, help='Path to the database file')
+    parser.add_argument('--db-path', type=str, required=True,
+                        help='Path to the database file (required)')
     args = parser.parse_args()
+    
+    db_path = args.db_path
+    if not db_path:
+        logger.critical("Database path (--db-path) is required")
+        sys.exit(1)
 
     # Initialize database
-    database.init_db(args.db_path)
+    try:
+        database.init_db(db_path)
+        logger.info(f"Database initialized successfully at: {db_path}")
+        
+        # Initialize the global db_service instance with the correct path
+        database.db_service = database.DatabaseService(db_path)
+    except Exception as e:
+        logger.critical(f"Failed to initialize database: {e}")
+        sys.exit(1)
     
     # Initialize the global app variable
     global app

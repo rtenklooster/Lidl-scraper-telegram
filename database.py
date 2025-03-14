@@ -8,6 +8,7 @@ import random
 from queue import Queue, Empty
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,6 +33,11 @@ class ConnectionPool:
             
             if len(self.in_use_connections) < self.max_connections:
                 try:
+                    # Ensure directory exists
+                    db_dir = os.path.dirname(self.db_path)
+                    if db_dir and not os.path.exists(db_dir):
+                        os.makedirs(db_dir, exist_ok=True)
+                        
                     conn = sqlite3.connect(self.db_path, timeout=self.timeout)
                     # Configureer SQLite voor betere concurrency
                     conn.execute("PRAGMA busy_timeout = 30000")  # Verhoogd naar 30 seconden
@@ -88,6 +94,10 @@ _pool_lock = threading.Lock()
 def initialize_connection_pool(db_path, max_connections=5):
     """Initialize the connection pool."""
     global _connection_pool
+    
+    if not db_path:
+        raise ValueError("Database path is required")
+        
     with _pool_lock:
         if _connection_pool is None:
             _connection_pool = ConnectionPool(db_path, max_connections=max_connections)
@@ -97,19 +107,24 @@ def initialize_connection_pool(db_path, max_connections=5):
 def get_connection_context(db_path):
     """Context manager voor het gebruik van database connecties met verbeterde foutafhandeling."""
     global _connection_pool
+    
+    if not db_path:
+        raise ValueError("Database path is required")
+    
     if (_connection_pool is None):
         initialize_connection_pool(db_path)
     
     conn = None
     retry_count = 0
-    max_retries = 3  # Verlaag retries
+    max_retries = 3
     
     while retry_count < max_retries:
         try:
             conn = _connection_pool.get_connection()
             break
-        except ConnectionError:
+        except ConnectionError as e:
             retry_count += 1
+            logger.error(f"Connection error: {e}")
             if retry_count >= max_retries:
                 logger.error(f"Failed to get database connection after {max_retries} attempts")
                 raise
@@ -139,6 +154,7 @@ def get_connection_context(db_path):
 # Logging queue and thread
 log_queue = Queue()
 log_thread = None
+_log_db_path = None  # Moet expliciet worden ingesteld door init_db
 
 def log_worker(db_path):
     while True:
@@ -156,15 +172,24 @@ def log_worker(db_path):
             logger.exception(f"Error in log worker: {e}")
 
 def start_log_thread(db_path):
-    global log_thread
-    log_thread = threading.Thread(target=log_worker, args=(db_path,))
-    log_thread.start()
+    global log_thread, _log_db_path
+    
+    if not db_path:
+        raise ValueError("Database path is required for log thread")
+    
+    _log_db_path = db_path
+    if log_thread is None or not log_thread.is_alive():
+        log_thread = threading.Thread(target=log_worker, args=(db_path,), daemon=True)
+        log_thread.start()
+        logger.info(f"Started log thread with database path: {db_path}")
 
 def stop_log_thread():
-    log_queue.put(None)
-    log_thread.join()
+    if log_thread and log_thread.is_alive():
+        log_queue.put(None)
+        log_thread.join(timeout=5.0)
+        logger.info("Log thread stopped")
 
-def log_query_execution(db_path, query_id, api_url, success, total_results=0, new_products=0, price_changes=0, 
+def log_query_execution(query_id, api_url, success, total_results=0, new_products=0, price_changes=0, 
                       error_message=None, response_status=None, execution_time_ms=0):
     log_entry = {
         'query': '''
@@ -178,7 +203,7 @@ def log_query_execution(db_path, query_id, api_url, success, total_results=0, ne
     }
     log_queue.put(log_entry)
 
-def log_notification(db_path, user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
+def log_notification(user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
                    discount_amount=None, discount_percentage=None, message_text=None, chat_id=None):
     log_entry = {
         'query': '''
@@ -209,6 +234,25 @@ def get_connection(db_path):
         return None
 
 def init_db(db_path):
+    """
+    Initialiseer de database met het opgegeven pad.
+    Het pad moet expliciet worden opgegeven, er is geen fallback.
+    
+    Args:
+        db_path: Pad naar de database file (verplicht)
+    """
+    global _log_db_path
+    
+    if not db_path:
+        raise ValueError("Database path is required for initialization")
+    
+    _log_db_path = db_path
+    logger.info(f"Initializing database at path: {db_path}")
+    
+    # Start the log thread with the specified database path
+    start_log_thread(db_path)
+    
+    # Create tables and initialize database structure
     with get_connection_context(db_path) as conn:
         cursor = conn.cursor()
         
@@ -506,9 +550,6 @@ def log_query_execution(conn, query_id, api_url, success, total_results=0, new_p
     
     return None
 
-# Start de log thread bij het initialiseren van de database
-start_log_thread('lidl_scraper.db')
-
 # Nieuwe centraal database service class voor alle database operaties
 class DatabaseService:
     """
@@ -517,12 +558,16 @@ class DatabaseService:
     """
     def __init__(self, db_path):
         """
-        Initialiseer de database service.
+        Initialiseer de database service met een expliciet pad.
         
         Args:
-            db_path: Naam van het database bestand
+            db_path: Pad naar het database bestand (verplicht)
         """
+        if not db_path:
+            raise ValueError("Database path is required for DatabaseService")
+        
         self.db_path = db_path
+        logger.info(f"DatabaseService initialized with path: {self.db_path}")
     
     def get_user_for_query(self, query_id: int) -> Tuple[Optional[int], Optional[str]]:
         """
@@ -1157,4 +1202,5 @@ class DatabaseService:
             return False
 
 # Creëer een globale database service instantie voor gebruik in de hele applicatie
-db_service = DatabaseService('lidl_scraper.db')
+# Maar begin met None en laat bot.py deze initialiseren met het correcte pad
+db_service = None
