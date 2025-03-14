@@ -7,21 +7,33 @@ import re
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ContextTypes
 from config import TOKEN
-import database  # Voeg deze import toe
+import database
 
+# Logger specifiek voor deze module configureren
 logger = logging.getLogger(__name__)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle the /start command to initialize users."""
+    user = update.effective_user
     chat_id = str(update.effective_chat.id)
     username = update.effective_user.username
     
+    logger.info(f"START commando ontvangen van {username} ({user.id})")
+    
     # Gebruik de database service
     db = database.db_service
+    
+    if db is None:
+        logger.error("Database service is niet geïnitialiseerd!")
+        await update.message.reply_text("Er ging iets mis met de database. Probeer het later opnieuw.")
+        return
+        
+    logger.debug(f"Zoeken naar gebruiker in database met chat_id: {chat_id}")
     user = db.get_user_by_chat_id(chat_id)
 
     if not user:
         # New user registration
+        logger.info(f"Nieuwe gebruiker: {username} ({chat_id}) - taal selectie tonen")
         keyboard = [
             [InlineKeyboardButton("Nederlands", callback_data="lang_nl"), 
              InlineKeyboardButton("English", callback_data="lang_en")]
@@ -32,8 +44,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         
         # Save user with default language
-        db.register_new_user(chat_id, username)
+        logger.debug(f"Nieuwe gebruiker registreren: {username} ({chat_id})")
+        success = db.register_new_user(chat_id, username)
+        
+        if not success:
+            logger.error(f"Kon gebruiker niet registreren: {username} ({chat_id})")
     else:
+        logger.info(f"Bestaande gebruiker: {username} ({chat_id})")
         await update.message.reply_text("Welkom terug!")
 
 async def choose_language(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -42,16 +59,33 @@ async def choose_language(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     lang_choice = query.data
     chat_id = str(query.message.chat_id)
+    user = query.from_user
     lang = "Nederlands" if "nl" in lang_choice else "English"
+    
+    logger.info(f"Taal gekozen: {lang} door gebruiker {user.username} ({user.id})")
 
     # Gebruik de database service
     db = database.db_service
-    db.update_user_language(chat_id, lang_choice[-2:])
+    
+    if db is None:
+        logger.error("Database service is niet geïnitialiseerd!")
+        await query.edit_message_text("Er ging iets mis met de database. Probeer /start opnieuw.")
+        return
+        
+    success = db.update_user_language(chat_id, lang_choice[-2:])
+    
+    if success:
+        logger.debug(f"Taal bijgewerkt naar {lang} voor gebruiker {chat_id}")
+    else:
+        logger.error(f"Kon taal niet bijwerken voor gebruiker {chat_id}")
 
     await query.edit_message_text(f"Taal is ingesteld op {lang}.")
 
 async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show the main menu with inline buttons for different actions."""
+    user = update.effective_user
+    logger.info(f"MENU commando ontvangen van {user.username} ({user.id})")
+    
     keyboard = [
         [InlineKeyboardButton("📋 Zoekopdrachten weergeven", callback_data="menu_list_queries")],
         [InlineKeyboardButton("⏸️ Zoekopdracht pauzeren", callback_data="menu_pause_query")],
@@ -68,6 +102,9 @@ async def menu_callback_handler(update: Update, context: ContextTypes.DEFAULT_TY
     query = update.callback_query
     await query.answer()
     choice = query.data
+    user = query.from_user
+    
+    logger.info(f"MENU keuze: {choice} van gebruiker {user.username} ({user.id})")
 
     if choice == "menu_list_queries":
         await query.edit_message_text("Je huidige zoekopdrachten:")

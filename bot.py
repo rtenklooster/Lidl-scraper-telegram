@@ -24,34 +24,45 @@ from modules.bot_commands import (
 )
 from modules.query_processor import convert_lidl_url_to_api
 
-# Configure logging
+# Configure logging with more verbose output
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,  # Verhoogd van INFO naar DEBUG voor meer details
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler("lidl_scraper.log"),
-        logging.StreamHandler()
+        logging.StreamHandler(sys.stdout)  # Expliciet uitvoer naar stdout
     ]
 )
 logger = logging.getLogger(__name__)
+
+# Set telegram.ext logging to INFO for connection details
+telegram_ext_logger = logging.getLogger('telegram.ext')
+telegram_ext_logger.setLevel(logging.INFO)
 
 # Global app instance
 app = None
 
 # URL and query handling
 async def handle_text_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    logger.info(f"Received text message: {update.message.text}")
+    """Handle normal text messages from users."""
+    user = update.effective_user
     text = update.message.text
-
+    logger.info(f"BERICHT ONTVANGEN van {user.username} ({user.id}): {text}")
+    
     # Handle query name input
     if context.user_data.get("await_queryname"):
+        logger.debug("Verwerken van query naam input")
         await handle_query_name_input(update, context)
         return
 
     # Handle URLs
     if "https://" in text:
+        logger.debug("URL gedetecteerd in bericht")
         await handle_url_input(update, context)
         return
+    
+    # Log dat het bericht niet werd verwerkt
+    logger.debug("Bericht is geen URL en geen query naam input - geen actie ondernomen")
 
 async def handle_query_name_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info(f"Processing query name input: {update.message.text}")
@@ -111,25 +122,35 @@ async def cancel_query_callback(update: Update, context: ContextTypes.DEFAULT_TY
 
 def register_handlers(application):
     """Register all handlers with the application.""" 
-    # Callback handlers have priority
+    logger.debug("Registreren van callback handlers...")
+    
     application.add_handler(CallbackQueryHandler(choose_language, pattern="^lang_"))
     application.add_handler(CallbackQueryHandler(confirm_query_callback, pattern="^confirm_query$"))
-    application.add_handler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$"))  # Correctie hier
+    application.add_handler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$"))
     application.add_handler(CallbackQueryHandler(delete_query_callback, pattern="^delete_"))
     application.add_handler(CallbackQueryHandler(menu_callback_handler, pattern="^menu_"))
     application.add_handler(CallbackQueryHandler(pause_query_callback, pattern="^pause_"))
     application.add_handler(CallbackQueryHandler(resume_query_callback, pattern="^resume_"))
     
     # Command handlers come next
+    logger.debug("Registreren van commando handlers...")
+    
     application.add_handler(CommandHandler("start", start))
+    logger.debug("Handler voor /start geregistreerd")
+    
     application.add_handler(CommandHandler("menu", menu))
+    logger.debug("Handler voor /menu geregistreerd")
+    
     application.add_handler(CommandHandler("list", list_queries))
     application.add_handler(CommandHandler("pause", pause_query))
     application.add_handler(CommandHandler("resume", resume_query))
     application.add_handler(CommandHandler("delete", delete_query))
 
     # Text handler for everything else
+    logger.debug("Registreren van text message handler...")
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_message))
+    
+    logger.info("Alle handlers succesvol geregistreerd!")
 
 def main():
     """Main function to start the bot."""
@@ -145,17 +166,20 @@ def main():
 
     # Initialize database
     try:
+        logger.info(f"Database initialiseren op pad: {db_path}")
         database.init_db(db_path)
-        logger.info(f"Database initialized successfully at: {db_path}")
+        logger.info(f"Database succesvol geïnitialiseerd op: {db_path}")
         
         # Initialize the global db_service instance with the correct path
         database.db_service = database.DatabaseService(db_path)
+        logger.info("Database service geïnitialiseerd")
     except Exception as e:
-        logger.critical(f"Failed to initialize database: {e}")
+        logger.critical(f"Database initialisatie mislukt: {e}")
         sys.exit(1)
     
     # Initialize the global app variable
     global app
+    logger.info(f"Bot initialiseren met token: {TOKEN[:5]}...{TOKEN[-5:] if len(TOKEN) > 10 else ''}")
     app = ApplicationBuilder().token(TOKEN).build()
     
     # Register handlers
@@ -170,7 +194,7 @@ def main():
     def signal_handler(signum, frame):
         """Handle shutdown signals by setting the flag"""
         nonlocal shutdown_requested
-        logger.info(f"Shutdown signal received: {signum}")
+        logger.info(f"Shutdown signaal ontvangen: {signum}")
         shutdown_requested = True
     
     async def start_app():
@@ -183,11 +207,22 @@ def main():
             signal.signal(signal.SIGTERM, signal_handler)
             
             # Start the application
+            logger.info("Bot applicatie initialiseren...")
             await app.initialize()
+            
+            # Start the scheduler
+            logger.info("Scheduler starten...")
             await scheduler.start()
             
             # Start polling for updates
+            logger.info("Starten met polling voor Telegram updates...")
             await app.updater.start_polling()
+            logger.info("BOT IS NU ACTIEF! Luistert naar berichten...")
+            
+            # Log a clear message to indicate the bot is running
+            print("\n" + "="*50)
+            print("🤖 LIDL SCRAPER BOT IS ACTIEF EN LUISTERT NAAR BERICHTEN!")
+            print("="*50 + "\n")
             
             try:
                 # Use simple sleep loop instead of event to avoid event loop issues
