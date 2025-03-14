@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import importlib
 import re
 import database
-from config import DATABASE_NAME
+from config import TOKEN
 from scrapers.lidl import LidlScraper
 
 logger = logging.getLogger(__name__)

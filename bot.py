@@ -12,7 +12,7 @@ import argparse
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
-from config import TOKEN, DATABASE_NAME
+from config import TOKEN
 import database
 from modules.scheduler import TaskScheduler
 from modules.bot_commands import (
@@ -137,7 +137,7 @@ def main():
     args = parser.parse_args()
 
     # Initialize database
-    database.init_db(args.db_path if args.db_path else DATABASE_NAME)
+    database.init_db(args.db_path)
     
     # Initialize the global app variable
     global app
