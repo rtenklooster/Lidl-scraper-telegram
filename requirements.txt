@@ -1,4 +1,4 @@
 python-telegram-bot==20.1
 requests==2.28.2
 ua-generator==0.1.8
-dotenv==0.21.0
+python-dotenv==0.21.0

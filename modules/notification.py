@@ -6,7 +6,6 @@ import logging
 from datetime import datetime
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import database
-from config import DATABASE_NAME
 
 logger = logging.getLogger(__name__)
 

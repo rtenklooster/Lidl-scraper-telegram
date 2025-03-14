@@ -48,7 +48,7 @@ async def handle_text_message(update: Update, context: ContextTypes.DEFAULT_TYPE
         return
 
     # Handle URLs
-    if "lidl.nl" in text:
+    if "https://" in text:
         await handle_url_input(update, context)
         return
 
@@ -113,7 +113,7 @@ def register_handlers(application):
     # Callback handlers have priority
     application.add_handler(CallbackQueryHandler(choose_language, pattern="^lang_"))
     application.add_handler(CallbackQueryHandler(confirm_query_callback, pattern="^confirm_query$"))
-    application.add_handler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$"))
+    application.add_handler(CallbackQueryHandler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$")))
     application.add_handler(CallbackQueryHandler(delete_query_callback, pattern="^delete_"))
     application.add_handler(CallbackQueryHandler(menu_callback_handler, pattern="^menu_"))
     application.add_handler(CallbackQueryHandler(pause_query_callback, pattern="^pause_"))
@@ -133,7 +133,7 @@ def register_handlers(application):
 def main():
     """Main function to start the bot."""
     parser = argparse.ArgumentParser(description='Lidl Scraper Bot')
-    parser.add_argument('--db-path', type=str, default=DATABASE_NAME, help='Path to the database file')
+    parser.add_argument('--db-path', type=str, help='Path to the database file')
     args = parser.parse_args()
 
     # Initialize database

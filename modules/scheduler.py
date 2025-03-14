@@ -5,7 +5,6 @@ Handles scheduling and executing periodic tasks.
 import asyncio
 import logging
 from datetime import datetime, timedelta
-import database
 from config import TOKEN
 from modules.query_processor import check_queries
 
