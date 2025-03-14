@@ -8,6 +8,7 @@ import asyncio
 import re
 import signal
 import sys
+import argparse
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
@@ -131,8 +132,12 @@ def register_handlers(application):
 
 def main():
     """Main function to start the bot."""
+    parser = argparse.ArgumentParser(description='Lidl Scraper Bot')
+    parser.add_argument('--db-path', type=str, default=DATABASE_NAME, help='Path to the database file')
+    args = parser.parse_args()
+
     # Initialize database
-    database.init_db(DATABASE_NAME)
+    database.init_db(args.db_path if args.db_path else DATABASE_NAME)
     
     # Initialize the global app variable
     global app

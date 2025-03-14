@@ -46,6 +46,16 @@ This project is a Telegram bot that scrapes Lidl's website for product informati
    python bot.py
    ```
 
+### Running the Bot with a Custom Database Path
+
+You can specify a custom path for the database file when running the bot using the `--db-path` parameter. For example:
+
+```sh
+python bot.py --db-path path/to/your/database.db
+```
+
+This allows you to use a different database file instead of the default one specified in the `.env` file.
+
 ## Usage
 
 - `/start`: Initialize the bot and register the user
