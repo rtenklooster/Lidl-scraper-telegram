@@ -7,6 +7,7 @@ import re
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ContextTypes
 from config import TOKEN
+import database  # Voeg deze import toe
 
 logger = logging.getLogger(__name__)
 

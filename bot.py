@@ -114,7 +114,7 @@ def register_handlers(application):
     # Callback handlers have priority
     application.add_handler(CallbackQueryHandler(choose_language, pattern="^lang_"))
     application.add_handler(CallbackQueryHandler(confirm_query_callback, pattern="^confirm_query$"))
-    application.add_handler(CallbackQueryHandler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$")))
+    application.add_handler(CallbackQueryHandler(cancel_query_callback, pattern="^cancel_query$"))  # Correctie hier
     application.add_handler(CallbackQueryHandler(delete_query_callback, pattern="^delete_"))
     application.add_handler(CallbackQueryHandler(menu_callback_handler, pattern="^menu_"))
     application.add_handler(CallbackQueryHandler(pause_query_callback, pattern="^pause_"))
