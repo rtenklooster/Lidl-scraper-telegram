@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 
 # Een geavanceerde connection pool implementatie
 class ConnectionPool:
-    def __init__(self, database_name, max_connections=5, timeout=20):
-        self.database_name = database_name
+    def __init__(self, db_path, max_connections=5, timeout=20):
+        self.db_path = db_path
         self.max_connections = max_connections
         self.timeout = timeout
         self.available_connections = []
@@ -32,7 +32,7 @@ class ConnectionPool:
             
             if len(self.in_use_connections) < self.max_connections:
                 try:
-                    conn = sqlite3.connect(self.database_name, timeout=self.timeout)
+                    conn = sqlite3.connect(self.db_path, timeout=self.timeout)
                     # Configureer SQLite voor betere concurrency
                     conn.execute("PRAGMA busy_timeout = 30000")  # Verhoogd naar 30 seconden
                     conn.execute("PRAGMA journal_mode = WAL")  # Write-Ahead Logging mode
@@ -85,20 +85,20 @@ class ConnectionPool:
 _connection_pool = None
 _pool_lock = threading.Lock()
 
-def initialize_connection_pool(database_name, max_connections=5):
+def initialize_connection_pool(db_path, max_connections=5):
     """Initialize the connection pool."""
     global _connection_pool
     with _pool_lock:
         if _connection_pool is None:
-            _connection_pool = ConnectionPool(database_name, max_connections=max_connections)
+            _connection_pool = ConnectionPool(db_path, max_connections=max_connections)
         return _connection_pool
 
 @contextmanager
-def get_connection_context(database_name):
+def get_connection_context(db_path):
     """Context manager voor het gebruik van database connecties met verbeterde foutafhandeling."""
     global _connection_pool
     if (_connection_pool is None):
-        initialize_connection_pool(database_name)
+        initialize_connection_pool(db_path)
     
     conn = None
     retry_count = 0
@@ -140,13 +140,13 @@ def get_connection_context(database_name):
 log_queue = Queue()
 log_thread = None
 
-def log_worker(database_name):
+def log_worker(db_path):
     while True:
         try:
             log_entry = log_queue.get(timeout=1)
             if log_entry is None:
                 break
-            with get_connection_context(database_name) as conn:
+            with get_connection_context(db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute(log_entry['query'], log_entry['params'])
                 conn.commit()
@@ -155,16 +155,16 @@ def log_worker(database_name):
         except Exception as e:
             logger.exception(f"Error in log worker: {e}")
 
-def start_log_thread(database_name):
+def start_log_thread(db_path):
     global log_thread
-    log_thread = threading.Thread(target=log_worker, args=(database_name,))
+    log_thread = threading.Thread(target=log_worker, args=(db_path,))
     log_thread.start()
 
 def stop_log_thread():
     log_queue.put(None)
     log_thread.join()
 
-def log_query_execution(database_name, query_id, api_url, success, total_results=0, new_products=0, price_changes=0, 
+def log_query_execution(db_path, query_id, api_url, success, total_results=0, new_products=0, price_changes=0, 
                       error_message=None, response_status=None, execution_time_ms=0):
     log_entry = {
         'query': '''
@@ -178,7 +178,7 @@ def log_query_execution(database_name, query_id, api_url, success, total_results
     }
     log_queue.put(log_entry)
 
-def log_notification(database_name, user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
+def log_notification(db_path, user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
                    discount_amount=None, discount_percentage=None, message_text=None, chat_id=None):
     log_entry = {
         'query': '''
@@ -345,13 +345,13 @@ def init_db(db_path):
         if 'discount_percentage' not in columns:
             cursor.execute('ALTER TABLE price_history ADD COLUMN discount_percentage FLOAT')
         
-        logger.info(f"Database {database_name} initialized successfully.")
+        logger.info(f"Database {db_path} initialized successfully.")
 
-def execute_query(database_name, query, params=(), max_retries=3):
+def execute_query(db_path, query, params=(), max_retries=3):
     """Execute a query with enhanced retry logic for database locks."""
     for retry in range(max_retries):
         try:
-            with get_connection_context(database_name) as conn:
+            with get_connection_context(db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute(query, params)
                 return True
@@ -369,11 +369,11 @@ def execute_query(database_name, query, params=(), max_retries=3):
     
     return False
 
-def execute_select(database_name, query, params=(), max_retries=3):
+def execute_select(db_path, query, params=(), max_retries=3):
     """Execute a SELECT query with enhanced retry logic for database locks."""
     for retry in range(max_retries):
         try:
-            with get_connection_context(database_name) as conn:
+            with get_connection_context(db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute(query, params)
                 results = cursor.fetchall()
@@ -392,7 +392,7 @@ def execute_select(database_name, query, params=(), max_retries=3):
     
     return []
 
-def log_notification_standalone(database_name, user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
+def log_notification_standalone(db_path, user_id, query_id, product_id, notification_type, old_price=None, new_price=None,
                              discount_amount=None, discount_percentage=None, message_text=None, chat_id=None):
     """
     Zelfstandige functie om een notificatie te loggen in een aparte transactie.
@@ -404,7 +404,7 @@ def log_notification_standalone(database_name, user_id, query_id, product_id, no
         try:
             # Gebruik een geheel nieuwe database verbinding voor deze operatie
             # Dit voorkomt lock contentie met andere connecties
-            conn = sqlite3.connect(database_name, timeout=30.0)
+            conn = sqlite3.connect(db_path, timeout=30.0)
             conn.execute("PRAGMA busy_timeout = 30000")  # 30 seconden timeout
             
             try:
@@ -515,14 +515,14 @@ class DatabaseService:
     Centrale service voor alle database operaties.
     Dit elimineert directe database toegang vanuit andere modules.
     """
-    def __init__(self, database_name):
+    def __init__(self, db_path):
         """
         Initialiseer de database service.
         
         Args:
-            database_name: Naam van het database bestand
+            db_path: Naam van het database bestand
         """
-        self.database_name = database_name
+        self.db_path = db_path
     
     def get_user_for_query(self, query_id: int) -> Tuple[Optional[int], Optional[str]]:
         """
@@ -535,7 +535,7 @@ class DatabaseService:
             Tuple met (user_id, chat_id) of (None, None) als niet gevonden
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     SELECT q.user_id, u.chat_id 
@@ -566,7 +566,7 @@ class DatabaseService:
             Product ID of None als niet gevonden
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT id FROM products WHERE query_id = ? AND label = ? ORDER BY id DESC LIMIT 1", 
                              (query_id, label))
@@ -596,7 +596,7 @@ class DatabaseService:
         }
         
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 
                 # Lowest recorded price
@@ -642,7 +642,7 @@ class DatabaseService:
         """
         notification_id = None
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 # Log de notificatie
                 cursor = conn.cursor()
                 cursor.execute('''
@@ -721,7 +721,7 @@ class DatabaseService:
             Lijst met (id, query_text, interval_minutes, last_run) tuples
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT id, query_text, interval_minutes, last_run FROM queries WHERE paused = 0")
                 return cursor.fetchall()
@@ -741,7 +741,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("UPDATE queries SET last_run = ? WHERE id = ?", (timestamp, query_id))
                 conn.commit()
@@ -766,7 +766,7 @@ class DatabaseService:
         notifications = []
         
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 
                 for product in products:
@@ -868,7 +868,7 @@ class DatabaseService:
             ID van de aangemaakte log entry of None bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute('''
                     INSERT INTO query_executions 
@@ -895,7 +895,7 @@ class DatabaseService:
             tuple: (success, message)
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 # Get user_id for the foreign key
                 cursor.execute("SELECT id FROM users WHERE chat_id=?", (chat_id,))
@@ -928,7 +928,7 @@ class DatabaseService:
             Gebruiker tuple of None als niet gevonden
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT id FROM users WHERE chat_id=?", (chat_id,))
                 return cursor.fetchone()
@@ -949,7 +949,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute(
                     "INSERT INTO users (chat_id, username, language) VALUES (?, ?, ?)", 
@@ -973,7 +973,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("UPDATE users SET language = ? WHERE chat_id = ?", (language, chat_id))
                 conn.commit()
@@ -993,7 +993,7 @@ class DatabaseService:
             Lijst met query tuples (id, query_name, interval_minutes, paused)
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     SELECT q.id, q.query_name, q.interval_minutes, q.paused
@@ -1017,7 +1017,7 @@ class DatabaseService:
             Lijst met query tuples (id, query_name, query_text)
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     SELECT q.id, q.query_name, q.query_text
@@ -1041,7 +1041,7 @@ class DatabaseService:
             Lijst met query tuples (id, query_name, query_text)
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     SELECT q.id, q.query_name, q.query_text
@@ -1065,7 +1065,7 @@ class DatabaseService:
             De naam van de query of None als niet gevonden
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT query_name FROM queries WHERE id = ?", (query_id,))
                 row = cursor.fetchone()
@@ -1087,7 +1087,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("UPDATE queries SET paused = 1 WHERE id = ?", (query_id,))
                 conn.commit()
@@ -1107,7 +1107,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("UPDATE queries SET paused = 0 WHERE id = ?", (query_id,))
                 conn.commit()
@@ -1127,7 +1127,7 @@ class DatabaseService:
             True als succesvol, False bij fout
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("DELETE FROM queries WHERE id = ?", (query_id,))
                 conn.commit()
@@ -1147,7 +1147,7 @@ class DatabaseService:
             True als dit de eerste uitvoering is, anders False
         """
         try:
-            with get_connection_context(self.database_name) as conn:
+            with get_connection_context(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT COUNT(*) FROM query_executions WHERE query_id = ?", (query_id,))
                 count = cursor.fetchone()[0]
