@@ -164,17 +164,19 @@ def main():
     # Create and configure scheduler
     scheduler = TaskScheduler(app)
     
-    # Event voor graceful shutdown
-    shutdown_event = asyncio.Event()
+    # Flag for shutdown
+    shutdown_requested = False
     
     def signal_handler(signum, frame):
-        """Handle shutdown signals"""
+        """Handle shutdown signals by setting the flag"""
+        nonlocal shutdown_requested
         logger.info(f"Shutdown signal received: {signum}")
-        # We need to use call_soon_threadsafe because signal handlers run in a different thread
-        asyncio.get_event_loop().call_soon_threadsafe(shutdown_event.set)
+        shutdown_requested = True
     
     async def start_app():
         """Start the application and scheduler."""
+        nonlocal shutdown_requested
+        
         try:
             # Setup signal handlers - using traditional signal.signal for Windows compatibility
             signal.signal(signal.SIGINT, signal_handler)
@@ -188,8 +190,9 @@ def main():
             await app.updater.start_polling()
             
             try:
-                # Wait for shutdown signal
-                await shutdown_event.wait()
+                # Use simple sleep loop instead of event to avoid event loop issues
+                while not shutdown_requested:
+                    await asyncio.sleep(1)
             finally:
                 # Ensure proper cleanup in correct order
                 logger.info("Stopping scheduler...")

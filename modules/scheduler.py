@@ -24,16 +24,21 @@ class TaskScheduler:
         self.app = app
         self.is_running = False
         self.scheduler_task = None
-        self._stopped = asyncio.Event()
+        # We'll create the event in the start method to ensure it's created in the correct loop
+        self._stopped = None
         
     async def start(self):
         """Start the scheduler."""
         if self.is_running:
             logger.warning("Scheduler is already running")
             return
-            
+        
+        # Create the Event in the current event loop
+        self._stopped = asyncio.Event()
         self.is_running = True
         self._stopped.clear()
+        
+        # Create the task in the current event loop
         self.scheduler_task = asyncio.create_task(self._run_scheduler())
         logger.info("Task scheduler started")
         
@@ -44,16 +49,24 @@ class TaskScheduler:
             return
             
         self.is_running = False
-        self._stopped.set()
+        
+        # Only set the event if it exists and was created in this loop
+        if self._stopped is not None:
+            try:
+                self._stopped.set()
+            except RuntimeError as e:
+                logger.warning(f"Could not set the stop event: {e}")
         
         if self.scheduler_task:
             try:
                 self.scheduler_task.cancel()
-                await asyncio.wait_for(self.scheduler_task, timeout=10)
+                await asyncio.wait_for(asyncio.shield(self.scheduler_task), timeout=10)
             except asyncio.TimeoutError:
                 logger.error("Failed to cancel scheduler task within timeout")
             except asyncio.CancelledError:
                 logger.info("Scheduler task cancelled successfully")
+            except Exception as e:
+                logger.error(f"Error during scheduler task cancellation: {e}")
             finally:
                 self.scheduler_task = None
                 
@@ -70,12 +83,16 @@ class TaskScheduler:
                     
                 # Sleep but be responsive to cancellation
                 try:
-                    await asyncio.wait_for(self._stopped.wait(), timeout=60)  # Check every 60 seconds
-                except asyncio.TimeoutError:
-                    # Timeout is expected, continue with next iteration
-                    pass
+                    # Use a simple sleep rather than waiting on the event
+                    for _ in range(6):  # Check every 60 seconds (10 seconds * 6)
+                        if not self.is_running:
+                            break
+                        await asyncio.sleep(10)
+                except asyncio.CancelledError:
+                    logger.info("Sleep was cancelled")
+                    break
                     
-                if self._stopped.is_set():
+                if not self.is_running:
                     break
         except asyncio.CancelledError:
             logger.info("Scheduler task was cancelled")
