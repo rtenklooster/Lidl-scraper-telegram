@@ -6,7 +6,7 @@ import asyncio
 import logging
 from datetime import datetime, timedelta
 import database
-from config import DATABASE_NAME
+from config import TOKEN
 from modules.query_processor import check_queries
 
 logger = logging.getLogger(__name__)
@@ -95,7 +95,7 @@ async def update_intervals():
     """
     logger.info("Updating query intervals")
     
-    with database.get_connection_context(DATABASE_NAME) as conn:
+    with database.get_connection_context(args.db_path) as conn:
         cursor = conn.cursor()
         
         # Get all active queries
