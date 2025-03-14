@@ -210,16 +210,48 @@ def main():
             # Start the application
             logger.info("Bot applicatie initialiseren...")
             await app.initialize()
-            await app.start()  # Deze regel was ontbrekend
+            await app.start()
             
             # Start the scheduler
             logger.info("Scheduler starten...")
             await scheduler.start()
             
-            # Start polling for updates
+            # Start polling with more robust settings for containerized environments
             logger.info("Starten met polling voor Telegram updates...")
-            await app.updater.start_polling()
+            await app.updater.start_polling(
+                poll_interval=2.0,            # Check more frequently
+                timeout=30,                   # Longer timeout for slower connections
+                bootstrap_retries=5,          # Retry bootstrap more times
+                read_timeout=30,              # Longer read timeout
+                write_timeout=30,             # Longer write timeout
+                connect_timeout=30,           # Longer connect timeout
+                pool_timeout=30,              # Longer pool timeout
+                drop_pending_updates=True,    # Start fresh when the bot starts
+                allowed_updates=["message", "callback_query", "chat_member"]  # Specify needed updates
+            )
+            
+            # Log network diagnostics when running in container environment
+            try:
+                # Check if we're in a container environment
+                in_container = os.path.exists("/.dockerenv") or os.environ.get("CONTAINER") == "true"
+                if in_container:
+                    logger.info("Running in container environment, checking network connectivity...")
+                    import socket
+                    # Test connection to Telegram API
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    s.settimeout(5)
+                    result = s.connect_ex(("api.telegram.org", 443))
+                    if result == 0:
+                        logger.info("Connection to api.telegram.org:443 successful")
+                    else:
+                        logger.error(f"Cannot connect to api.telegram.org:443, error code: {result}")
+                    s.close()
+            except Exception as e:
+                logger.warning(f"Network diagnostic check failed: {e}")
+
             logger.info("BOT IS NU ACTIEF! Luistert naar berichten...")
+            
+            # Rest of the code remains the same...
             
             # Log a clear message to indicate the bot is running
             print("\n" + "="*50)
