@@ -16,13 +16,13 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 from config import TOKEN
 import database
 from modules.scheduler import TaskScheduler
+from modules.query_processor import convert_lidl_url_to_api
 from modules.bot_commands import (
     start, choose_language, menu, menu_callback_handler,
     list_queries, pause_query, pause_query_callback,
     resume_query, resume_query_callback,
     delete_query, delete_query_callback
 )
-from modules.query_processor import convert_lidl_url_to_api
 
 # Configure logging with more verbose output
 logging.basicConfig(
@@ -131,7 +131,8 @@ def register_handlers(application):
     application.add_handler(CallbackQueryHandler(menu_callback_handler, pattern="^menu_"))
     application.add_handler(CallbackQueryHandler(pause_query_callback, pattern="^pause_"))
     application.add_handler(CallbackQueryHandler(resume_query_callback, pattern="^resume_"))
-    
+
+
     # Command handlers come next
     logger.debug("Registreren van commando handlers...")
     
@@ -209,6 +210,7 @@ def main():
             # Start the application
             logger.info("Bot applicatie initialiseren...")
             await app.initialize()
+            await app.start()  # Deze regel was ontbrekend
             
             # Start the scheduler
             logger.info("Scheduler starten...")
@@ -249,6 +251,7 @@ def main():
         # Run the bot
         logger.info("Starting bot...")
         asyncio.run(start_app())
+        logger.info("Bot has started.")
     except Exception as e:
         logger.exception(f"Fatal error: {e}")
         sys.exit(1)
