@@ -192,14 +192,14 @@ def log_notification(database_name, user_id, query_id, product_id, notification_
     }
     log_queue.put(log_entry)
 
-def get_connection(database_name):
+def get_connection(db_path):
     """
     Legacy functie voor het verkrijgen van een database connectie.
     Gebruik bij voorkeur get_connection_context voor betere resource handling.
     """
     global _connection_pool
     if _connection_pool is None:
-        initialize_connection_pool(database_name)
+        initialize_connection_pool(db_path)
         
     try:
         conn = _connection_pool.get_connection()
@@ -208,8 +208,8 @@ def get_connection(database_name):
         logger.error(f"Error connecting to database: {e}")
         return None
 
-def init_db(database_name):
-    with get_connection_context(database_name) as conn:
+def init_db(db_path):
+    with get_connection_context(db_path) as conn:
         cursor = conn.cursor()
         
         # Maak de users tabel (indien deze nog niet bestaat)
